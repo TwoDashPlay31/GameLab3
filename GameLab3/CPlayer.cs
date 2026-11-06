@@ -30,5 +30,11 @@ namespace GameLab3
             countdownTimer.reset();
             return true;
         }
+        
+        public void increaseSpeed(double speedModifier)
+        {
+            timeBeforeClick = Math.Max(0.2, timeBeforeClick - speedModifier);
+            countdownTimer.setTargetTime(timeBeforeClick);
+        }
     }
 }
