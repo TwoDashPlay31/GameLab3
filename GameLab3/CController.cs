@@ -67,6 +67,25 @@ namespace GameLab3
             return newObj;
         }
 
+        public void update(double delta, Canvas canvas)
+        {
+            time += delta;
+            if (time >= spawnRate)
+            {
+                time = 0;
+                CCollectable newObj = spawnObject();
+                canvas.Children.Add(newObj.getSprite());
+            }
+
+            for (int i = objects.Count - 1; i >= 0; i--)
+            {
+                if (objects[i].updateLifetime(delta))
+                {
+                    canvas.Children.Remove(objects[i].getSprite());
+                    objects.RemoveAt(i);
+                }
+            }
+        }
         public void pointsIncrease(double value)
         {
             this.points += value;
