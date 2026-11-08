@@ -86,6 +86,19 @@ namespace GameLab3
                 }
             }
         }
+        public void mouseClick(Point mousePosition, Canvas canvas, CPlayer player)
+        {
+            for (int i = objects.Count - 1; i >= 0; i--)
+            {
+                if (objects[i].onClick(player, this, mousePosition) == true)
+                {
+                    canvas.Children.Remove(objects[i].getSprite());
+                    objects.RemoveAt(i); 
+                    break;
+                }
+            }
+        }
+
         public void pointsIncrease(double value)
         {
             this.points += value;
