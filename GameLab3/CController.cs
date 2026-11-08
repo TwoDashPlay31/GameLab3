@@ -10,6 +10,7 @@ namespace GameLab3
 {
     public class CController
     {
+        private List<CCollectable> objects;
         private double spawnRate;
         private double time;
         private Random rng;
@@ -23,6 +24,7 @@ namespace GameLab3
         public CController(double spawnRate, ulong startTime, Size sceneSize)
         {
             rng = new Random();
+            objects = new List<CCollectable>();
             this.spawnRate = spawnRate;
             time = startTime;
             this.sceneSize = sceneSize;
@@ -34,6 +36,36 @@ namespace GameLab3
         }
 
         public double Points => points;
+        public List<CCollectable> Objects => objects;
+
+        public CCollectable spawnObject()
+        {
+            double randSize = rng.NextDouble() * (maxSpriteSize - minSpriteSize) + minSpriteSize;
+            double randLifetime = rng.NextDouble() * (maxLifetime - minLifetime) + minLifetime;
+
+            double randX = rng.NextDouble() * (sceneSize.Width - randSize);
+            double randY = rng.NextDouble() * (sceneSize.Height - randSize);
+
+            Point randPos = new Point(randX, randY);
+
+            CCollectable newObj ;
+
+            if (rng.Next(0, 100) < 50) 
+            {
+                newObj = new CPointGiver(randPos, randSize, randLifetime);
+            }
+            else if  (rng.Next(0, 100) < 60)
+            {
+                newObj = new CClickSpeedUp(randPos, randSize, randLifetime);
+            }
+            else
+            {
+                newObj = new CLifetimeUp(randPos, randSize, randLifetime);
+            }
+            
+            objects.Add(newObj);
+            return newObj;
+        }
 
         public void pointsIncrease(double value)
         {
