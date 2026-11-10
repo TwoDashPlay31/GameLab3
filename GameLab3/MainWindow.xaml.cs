@@ -56,6 +56,22 @@ namespace GameLab3
             }
         }
 
+        private void GameCanvas_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!timer.IsEnabled || !player.tryClick()) return;
+
+            Point mousePosition = e.GetPosition(GameCanvas);
+
+            double oldPoints = controller.Points;
+
+            controller.mouseClick(mousePosition, GameCanvas, player);
+
+            if (controller.Points > oldPoints)
+            {
+                TxtScore.Text = $"Score: {controller.Points:F0}";
+            }
+        }
+
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
             GameCanvas.Children.Clear();

@@ -26,7 +26,7 @@
         </StackPanel>
 
         <Border Grid.Column="1" BorderBrush="#CCCCCC" BorderThickness="1,0,0,0">
-            <Canvas x:Name="GameCanvas" Background="#F9F9F9" ClipToBounds="True"/>
+            <Canvas x:Name="GameCanvas" Background="#F9F9F9" MouseDown="GameCanvas_MouseDown" ClipToBounds="True"/>
         </Border>
     </Grid>
 </Window>
