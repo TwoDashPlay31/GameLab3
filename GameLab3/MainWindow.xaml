@@ -7,6 +7,26 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <StackPanel Grid.Column="0" Background="#F0F0F0">
+            <Button x:Name="BtnStart" Content="Старт" Height="30" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Счёт:" FontSize="14" FontWeight="Bold"/>
+            <TextBlock x:Name="TxtScore" Text="Score: 0" FontSize="16" Margin="0,0,0,20"/>
+
+            <TextBlock Text="Время:" FontSize="14" FontWeight="Bold"/>
+            <TextBlock x:Name="TxtTime" Text="Time: 0,0s" FontSize="16" Margin="0,0,0,20"/>
+
+            <TextBlock Text="Лог событий:" FontSize="12" Foreground="Gray"/>
+            <ListBox x:Name="LogList" Height="200" Background="White" FontSize="11"/>
+        </StackPanel>
+
+        <Border Grid.Column="1" BorderBrush="#CCCCCC" BorderThickness="1,0,0,0">
+            <Canvas x:Name="GameCanvas" Background="#F9F9F9" ClipToBounds="True"/>
+        </Border>
     </Grid>
 </Window>
