@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Background="#F0F0F0">
-            <Button x:Name="BtnStart" Content="Старт" Height="30" Margin="0,0,0,10"/>
+            <Button x:Name="BtnStart" Content="Старт" Height="30" Margin="0,0,0,10" Click="BtnStart_Click"/>
 
             <TextBlock Text="Счёт:" FontSize="14" FontWeight="Bold"/>
             <TextBlock x:Name="TxtScore" Text="Score: 0" FontSize="16" Margin="0,0,0,20"/>

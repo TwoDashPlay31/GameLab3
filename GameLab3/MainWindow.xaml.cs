@@ -55,5 +55,26 @@ namespace GameLab3
                 BtnStart.IsEnabled = true; 
             }
         }
+
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+            GameCanvas.Children.Clear();
+            LogList.Items.Clear();
+            gameTimeElapsed = 0;
+
+            Size sceneSize = new Size(GameCanvas.ActualWidth, GameCanvas.ActualHeight);
+
+            if (sceneSize.Width == 0 || sceneSize.Height == 0)
+            {
+                sceneSize = new Size(600, 400);
+            }
+
+            controller = new CController(1.0, 0, sceneSize);
+
+            BtnStart.IsEnabled = false;
+
+            timer.Start();
+            LogList.Items.Add("Игра началась!");
+        }
     }
 }
