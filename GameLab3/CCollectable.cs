@@ -43,8 +43,11 @@ namespace GameLab3
 
         public bool isMouseOnObject(Point mousePosition)
         {
-            double distance = Math.Sqrt(Math.Pow(mousePosition.X - position.X, 2) +
-                                        Math.Pow(mousePosition.Y - position.Y, 2));
+            double centerX = position.X + size.Width / 2;
+            double centerY = position.Y + size.Height / 2;
+
+            double distance = Math.Sqrt(Math.Pow(mousePosition.X - centerX, 2) +
+                                        Math.Pow(mousePosition.Y - centerY, 2));
             return distance <= (size.Width / 2);
         }
     }
