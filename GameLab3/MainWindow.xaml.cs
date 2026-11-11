@@ -42,15 +42,19 @@ namespace GameLab3
             player.update(0.1);
 
             gameTimeElapsed += 0.1;
-            TxtTime.Text = $"Time: {gameTimeElapsed:F1}s";
+            TxtTime.Text = $"{gameTimeElapsed:F1} с";
+            TimeBar.Value = gameTimeElapsed;
 
-            TxtScore.Text = $"Score: {controller.Points:F0}";
+            TxtScore.Text = $"{controller.Points:F0}";
 
             if (gameTimeElapsed >= maxGameTime)
             {
                 timer.Stop();
                 GameCanvas.Children.Clear();
                 controller.Objects.Clear();
+                TxtHint.Text = "Игра окончена. Нажмите «Начать игру», чтобы сыграть ещё раз";
+                TxtHint.Visibility = Visibility.Visible;
+                LogList.Items.Add($"Игра окончена. Счёт: {controller.Points:F0}");
                 MessageBox.Show($"Игра окончена! Вы набрали {controller.Points:F0} очков.", "Финиш");
                 BtnStart.IsEnabled = true; 
             }
@@ -68,7 +72,7 @@ namespace GameLab3
 
             if (controller.Points > oldPoints)
             {
-                TxtScore.Text = $"Score: {controller.Points:F0}";
+                TxtScore.Text = $"{controller.Points:F0}";
             }
         }
 
@@ -77,6 +81,11 @@ namespace GameLab3
             GameCanvas.Children.Clear();
             LogList.Items.Clear();
             gameTimeElapsed = 0;
+
+            TxtScore.Text = "0";
+            TxtTime.Text = "0,0 с";
+            TimeBar.Value = 0;
+            TxtHint.Visibility = Visibility.Collapsed;
 
             Size sceneSize = new Size(GameCanvas.ActualWidth, GameCanvas.ActualHeight);
 
